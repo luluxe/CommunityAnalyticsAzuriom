@@ -1,0 +1,18 @@
+{
+    "id": "community-analytics",
+    "name": "CommunityAnalytics",
+    "description": "Plugin that link your store to Community Analytics",
+    "version": "1.0.0",
+    "url": "https://communityanalytics.net",
+    "authors": [
+        "CommunityAnalytics team"
+    ],
+    "azuriom_api": "1.0.0",
+    "providers": [
+        "\\Azuriom\\Plugin\\CommunityAnalytics\\Providers\\CommunityAnalyticsServiceProvider",
+        "\\Azuriom\\Plugin\\CommunityAnalytics\\Providers\\RouteServiceProvider"
+    ],
+    "dependencies": {
+        "shop": "^1.0.13"
+    }
+}

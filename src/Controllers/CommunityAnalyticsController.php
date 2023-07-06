@@ -1,14 +1,13 @@
 <?php
 
-namespace CommunityAnalytics\Controllers;
+namespace Azuriom\Plugin\CommunityAnalytics\Controllers;
 
 use Azuriom\Http\Controllers\Controller;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Response;
 
-class CommunityAnalyticsHomeController extends Controller
+class CommunityAnalyticsController extends Controller
 {
     /**
      * Show the home plugin page.
@@ -17,6 +16,6 @@ class CommunityAnalyticsHomeController extends Controller
      */
     public function index(): View|Factory|Application
     {
-        return view('community-analytics::settings');
+        return view('communityanalytics::settings');
     }
 }

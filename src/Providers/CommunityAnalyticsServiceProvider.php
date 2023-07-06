@@ -1,6 +1,6 @@
 <?php
 
-namespace CommunityAnalytics\Providers;
+namespace Azuriom\Plugin\CommunityAnalytics\Providers;
 
 use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
 use Azuriom\Models\Permission;
@@ -74,7 +74,9 @@ class CommunityAnalyticsServiceProvider extends BasePluginServiceProvider
 
         $this->registerUserNavigation();
 
-        Permission::registerPermissions(['community-analytics.admin' => 'community-analytics::admin.permissions.admin']);
+        Permission::registerPermissions([
+            'communityanalytics.admin' => 'communityanalytics::admin.permissions.admin'
+        ]);
     }
 
     /**
@@ -85,7 +87,7 @@ class CommunityAnalyticsServiceProvider extends BasePluginServiceProvider
     protected function routeDescriptions()
     {
         return [
-            'community-analytics.home' => trans('community-analytics::messages.title'),
+            'communityanalytics.home' => trans('communityanalytics::messages.title'),
         ];
     }
 
@@ -97,13 +99,13 @@ class CommunityAnalyticsServiceProvider extends BasePluginServiceProvider
     protected function adminNavigation()
     {
         return [
-            'community-analytics' => [
-                'name' => trans('community-analytics::admin.nav.title'), // Traduction du nom de l'onglet
+            'communityanalytics' => [
+                'name' => trans('communityanalytics::admin.nav.title'), // Traduction du nom de l'onglet
                 'icon' => 'bi bi-bar-chart-fill', // Icône Bootstrap Icons
-                'route' => 'community-analytics.admin.settings', // Route de la page
-                'permission' => 'community-analytics.admin', // Permission nécessaire pour voir l'onglet
+                'route' => 'communityanalytics.admin.settings', // Route de la page
+                'permission' => 'communityanalytics.admin', // Permission nécessaire pour voir l'onglet
                 'items' => [
-                    'community-analytics.admin.settings' => trans('community-analytics::admin.nav.settings'),
+                    'communityanalytics.admin.settings' => trans('communityanalytics::admin.nav.settings'),
                 ]
             ],
         ];

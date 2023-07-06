@@ -1,6 +1,6 @@
 <?php
 
-use CommunityAnalytics\Controllers\Admin\SettingController;
+use Azuriom\Plugin\CommunityAnalytics\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | a group which contains the "web" and "admin" middleware groups. Now create something great!
 |
 */
-Route::middleware('can:community-analytics.admin')->group(function () {
+Route::middleware('can:communityanalytics.admin')->group(function () {
     Route::get('/settings', [SettingController::class, 'show'])->name('settings');
     Route::post('/settings', [SettingController::class, 'save'])->name('settings.save');
 });

@@ -1,12 +1,12 @@
 <?php
 
-namespace CommunityAnalytics\Controllers\Admin;
+namespace Azuriom\Plugin\CommunityAnalytics\Controllers\Admin;
 
 use Azuriom\Http\Controllers\Controller;
 use Azuriom\Models\Setting;
-use CommunityAnalytics\Jobs\SendStoreInfoJob;
-use CommunityAnalytics\Requests\ApiTokenStoreRequest;
-use CommunityAnalytics\Util\CommunityAnalyticsUrl;
+use Azuriom\Plugin\CommunityAnalytics\Jobs\SendStoreInfoJob;
+use Azuriom\Plugin\CommunityAnalytics\Requests\ApiTokenStoreRequest;
+use Azuriom\Plugin\CommunityAnalytics\Util\CommunityAnalyticsUtil;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -22,9 +22,9 @@ class SettingController extends Controller
      */
     public function show(): View|Factory|Application
     {
-        $api_key = Setting::firstWhere('name', 'community-analytics.api_token');
+        $api_key = Setting::query()->where('name', 'communityanalytics.api_token')->first();
 
-        return view('community-analytics::admin.settings', [
+        return view('communityanalytics::admin.settings', [
             'api_key' => $api_key ? $api_key->value : '',
         ]);
     }
@@ -39,11 +39,11 @@ class SettingController extends Controller
     public function save(ApiTokenStoreRequest $request) : RedirectResponse
     {
         $api_token = $request->api_token;
-        $url = CommunityAnalyticsUrl::Url('platform');
+        $url = CommunityAnalyticsUtil::getUrl('platform');
 
         //Check api_token
         $headers = array(
-            'X-Community-Analytics-Token: ' . $api_token,
+            'X-communityanalytics-Token: ' . $api_token,
         );
         try {
             $response = file_get_contents($url, false, stream_context_create([
@@ -53,19 +53,19 @@ class SettingController extends Controller
                 ],
             ]));
         } catch (Exception $e) {
-            return redirect()->route('community-analytics.admin.settings')
+            return redirect()->route('communityanalytics.admin.settings')
                 ->with('error', 'Invalid api_token');
         }
 
         //Save the api_token
         Setting::updateSettings([
-            'community-analytics.api_token' => $request->api_token,
+            'communityanalytics.api_token' => $request->api_token,
         ]);
 
         //Launch sync job
         SendStoreInfoJob::dispatch($request->api_token);
 
-        return redirect()->route('community-analytics.admin.settings')
-            ->with('success', trans('community-analytics::admin.settings.apiTokenStored') );
+        return redirect()->route('communityanalytics.admin.settings')
+            ->with('success', trans('communityanalytics::admin.settings.apiTokenStored') );
     }
 }

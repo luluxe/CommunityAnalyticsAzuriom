@@ -1,10 +1,10 @@
 <?php
 
-namespace CommunityAnalytics\Jobs;
+namespace Azuriom\Plugin\CommunityAnalytics\Jobs;
 
 use Azuriom\Plugin\Shop\Models\Package;
 use Azuriom\Plugin\Shop\Models\Payment;
-use CommunityAnalytics\Util\CommunityAnalyticsUrl;
+use Azuriom\Plugin\CommunityAnalytics\Util\CommunityAnalyticsUtil;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -72,10 +72,10 @@ class SendStoreInfoJob implements ShouldQueue
     {
         $headers = array(
             'Content-Type: application/json',
-            'X-Community-Analytics-Token: ' . $this->api_token,
+            'X-communityanalytics-Token: ' . $this->api_token,
         );
         $packages = Package::query()->get();
-        $url = CommunityAnalyticsUrl::Url('packages');
+        $url = CommunityAnalyticsUtil::getUrl('packages');
 
 
         for ($i = 0; $i < count($packages); $i += 100) {
@@ -135,9 +135,9 @@ class SendStoreInfoJob implements ShouldQueue
     {
         $headers = array(
             'Content-Type: application/json',
-            'X-Community-Analytics-Token: ' . $this->api_token,
+            'X-communityanalytics-Token: ' . $this->api_token,
         );
-        $url = CommunityAnalyticsUrl::Url('payments');
+        $url = CommunityAnalyticsUtil::getUrl('payments');
 
         // Get all payments
         $payments = Payment::query()->with('user')->with('items')->where('status', '=', 'completed')->get();
@@ -213,9 +213,9 @@ class SendStoreInfoJob implements ShouldQueue
     {
         $headers = array(
             'Content-Type: application/json',
-            'X-Community-Analytics-Token: ' . $this->api_token,
+            'X-communityanalytics-Token: ' . $this->api_token,
         );
-        $url = CommunityAnalyticsUrl::Url('stores');
+        $url = CommunityAnalyticsUtil::getUrl('stores');
 
         // HTTP Request options
         $options = array(

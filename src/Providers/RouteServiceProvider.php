@@ -1,6 +1,6 @@
 <?php
 
-namespace CommunityAnalytics\Providers;
+namespace Azuriom\Plugin\CommunityAnalytics\Providers;
 
 use Azuriom\Extensions\Plugin\BaseRouteServiceProvider;
 use Illuminate\Support\Facades\Route;

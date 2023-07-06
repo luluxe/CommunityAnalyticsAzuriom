@@ -1,7 +1,7 @@
 {
-    "name": "azuriom/community-analytics",
+    "name": "azuriom/communityanalytics",
     "type": "azuriom-plugin",
-    "description": "Plugin for Azuriom",
+    "description": "CommunityAnalytics - Plugin for Azuriom",
     "autoload": {
         "psr-4": {
             "Azuriom\\Plugin\\CommunityAnalytics\\": "src/"

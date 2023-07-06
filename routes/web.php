@@ -1,6 +1,6 @@
 <?php
 
-use CommunityAnalytics\Controllers\CommunityAnalyticsHomeController;
+use Azuriom\Plugin\CommunityAnalytics\Controllers\CommunityAnalyticsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [CommunityAnalyticsHomeController::class, 'index']);
+Route::get('/', [CommunityAnalyticsController::class, 'index']);

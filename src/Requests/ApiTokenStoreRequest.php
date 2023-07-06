@@ -1,6 +1,6 @@
 <?php
 
-namespace CommunityAnalytics\Requests;
+namespace Azuriom\Plugin\CommunityAnalytics\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,7 @@ class ApiTokenStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'api_token' => ['required', 'string', 'max:36'],
+            'api_token' => 'required|string|max:36',
         ];
     }
 }

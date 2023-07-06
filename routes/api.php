@@ -1,6 +1,6 @@
 <?php
 
-use CommunityAnalytics\Controllers\Api\ApiController;
+use Azuriom\Plugin\CommunityAnalytics\Controllers\Api\ApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,5 +13,3 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::get('/', [ApiController::class, 'index']);

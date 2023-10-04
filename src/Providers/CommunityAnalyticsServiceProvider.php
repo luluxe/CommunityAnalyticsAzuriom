@@ -75,7 +75,7 @@ class CommunityAnalyticsServiceProvider extends BasePluginServiceProvider
         $this->registerUserNavigation();
 
         Permission::registerPermissions([
-            'communityanalytics.admin' => 'communityanalytics::admin.permissions.admin'
+            'communityanalytics.admin' => 'communityanalytics::main.permissions.admin'
         ]);
     }
 
@@ -87,7 +87,7 @@ class CommunityAnalyticsServiceProvider extends BasePluginServiceProvider
     protected function routeDescriptions()
     {
         return [
-            'communityanalytics.home' => trans('communityanalytics::messages.title'),
+            'communityanalytics.home' => trans('communityanalytics::main.name'),
         ];
     }
 
@@ -100,13 +100,10 @@ class CommunityAnalyticsServiceProvider extends BasePluginServiceProvider
     {
         return [
             'communityanalytics' => [
-                'name' => trans('communityanalytics::admin.nav.title'), // Traduction du nom de l'onglet
-                'icon' => 'bi bi-bar-chart-fill', // Icône Bootstrap Icons
-                'route' => 'communityanalytics.admin.settings', // Route de la page
-                'permission' => 'communityanalytics.admin', // Permission nécessaire pour voir l'onglet
-                'items' => [
-                    'communityanalytics.admin.settings' => trans('communityanalytics::admin.nav.settings'),
-                ]
+                'name' => trans('communityanalytics::main.name'),
+                'icon' => 'bi bi-bar-chart-fill', // Bootstrap icons
+                'route' => 'communityanalytics.admin.index',
+                'permission' => 'communityanalytics.admin',
             ],
         ];
     }

@@ -1,6 +1,6 @@
 <?php
 
-use Azuriom\Plugin\CommunityAnalytics\Controllers\Admin\SettingController;
+use Azuriom\Plugin\CommunityAnalytics\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::middleware('can:communityanalytics.admin')->group(function () {
-    Route::get('/settings', [SettingController::class, 'show'])->name('settings');
-    Route::post('/settings', [SettingController::class, 'save'])->name('settings.save');
+    Route::get('', [AdminController::class, 'index'])
+        ->name('index');
+    Route::post('regenerate-api-key', [AdminController::class, 'regenerateApiKey'])
+        ->name('regenerate-api-key');
 });

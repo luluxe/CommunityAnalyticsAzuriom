@@ -1,6 +1,5 @@
 <?php
 
-use Azuriom\Plugin\CommunityAnalytics\Controllers\CommunityAnalyticsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +13,3 @@ use Illuminate\Support\Facades\Route;
 | as prefix. Now create something great!
 |
 */
-
-Route::get('/', [CommunityAnalyticsController::class, 'index']);

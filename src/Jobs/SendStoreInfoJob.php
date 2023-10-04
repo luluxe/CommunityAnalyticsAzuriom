@@ -57,11 +57,42 @@ class SendStoreInfoJob implements ShouldQueue
             //TODO : handle error
         }
         //Send payments to CommunityAnalytics
-        $result= $this->sendPayments();
+        $result = $this->sendPayments();
         if (!$result) {
             return;
             //TODO : handle error
         }
+    }
+
+    private function createStore(): bool
+    {
+        $headers = array(
+            'Content-Type: application/json',
+            'X-communityanalytics-Token: ' . $this->api_token,
+        );
+        $url = CommunityAnalyticsUtil::getUrl('stores');
+
+        // HTTP Request options
+        $options = array(
+            'http' => array(
+                'header' => $headers,
+                'method' => 'POST',
+                'content' => json_encode([
+                    'store_type' => 'azuriom',
+                    'url' => url('/')
+                ]),
+            ),
+        );
+
+        // Create context stream
+        $context = stream_context_create($options);
+
+        try {
+            file_get_contents($url, false, $context);
+        } catch (Exception $e) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -152,7 +183,7 @@ class SendStoreInfoJob implements ShouldQueue
                 'http' => array(
                     'header' => $headers,
                     'method' => 'POST',
-                    'content' =>json_encode($formatted_payments),
+                    'content' => json_encode($formatted_payments),
                 ),
             );
 
@@ -195,7 +226,7 @@ class SendStoreInfoJob implements ShouldQueue
      * @param Collection|array $items of packages bought
      * @return array of packages bought formatted
      */
-    private function formatPackagesBought(Collection|array $items) : array
+    private function formatPackagesBought(Collection|array $items): array
     {
         $formatted_items = [];
         foreach ($items as $item) {
@@ -207,37 +238,6 @@ class SendStoreInfoJob implements ShouldQueue
             ];
         }
         return $formatted_items;
-    }
-
-    private function createStore(): bool
-    {
-        $headers = array(
-            'Content-Type: application/json',
-            'X-communityanalytics-Token: ' . $this->api_token,
-        );
-        $url = CommunityAnalyticsUtil::getUrl('stores');
-
-        // HTTP Request options
-        $options = array(
-            'http' => array(
-                'header' => $headers,
-                'method' => 'POST',
-                'content' => json_encode([
-                    'store_type' => 'azuriom',
-                    'url' => url('/')
-                ]),
-            ),
-        );
-
-        // Create context stream
-        $context = stream_context_create($options);
-
-        try {
-            file_get_contents($url, false, $context);
-        } catch (Exception $e) {
-            return false;
-        }
-        return true;
     }
 
 

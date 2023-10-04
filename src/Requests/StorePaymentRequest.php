@@ -4,14 +4,14 @@ namespace Azuriom\Plugin\CommunityAnalytics\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ApiTokenStoreRequest extends FormRequest
+class StorePaymentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,10 +21,10 @@ class ApiTokenStoreRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'api_token' => 'required|string|max:36',
+            'date_min' => 'nullable|string|date',
         ];
     }
 }

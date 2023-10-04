@@ -21,27 +21,27 @@ class RouteServiceProvider extends BaseRouteServiceProvider
         $this->mapAdminRoutes();
     }
 
+    protected function mapApiRoutes(): void
+    {
+        Route::prefix('api/' . $this->plugin->id)
+            ->middleware('api')
+            ->name($this->plugin->id . '.api.')
+            ->group(plugin_path($this->plugin->id . '/routes/api.php'));
+    }
+
     protected function mapPluginsRoutes(): void
     {
         Route::prefix($this->plugin->id)
             ->middleware('web')
-            ->name($this->plugin->id.'.')
-            ->group(plugin_path($this->plugin->id.'/routes/web.php'));
-    }
-
-    protected function mapApiRoutes(): void
-    {
-        Route::prefix('api/'.$this->plugin->id)
-            ->middleware('api')
-            ->name($this->plugin->id.'.')
-            ->group(plugin_path($this->plugin->id.'/routes/api.php'));
+            ->name($this->plugin->id . '.')
+            ->group(plugin_path($this->plugin->id . '/routes/web.php'));
     }
 
     protected function mapAdminRoutes(): void
     {
-        Route::prefix('admin/'.$this->plugin->id)
+        Route::prefix('admin/' . $this->plugin->id)
             ->middleware('admin-access')
-            ->name($this->plugin->id.'.admin.')
-            ->group(plugin_path($this->plugin->id.'/routes/admin.php'));
+            ->name($this->plugin->id . '.admin.')
+            ->group(plugin_path($this->plugin->id . '/routes/admin.php'));
     }
 }

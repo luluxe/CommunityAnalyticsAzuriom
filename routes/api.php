@@ -1,6 +1,6 @@
 <?php
 
-use Azuriom\Plugin\CommunityAnalytics\Controllers\Api\ApiController;
+use Azuriom\Plugin\CommunityAnalytics\Controllers\Api\StoreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,3 +13,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('', [StoreController::class, "info"])->name('info');
+Route::get("packages", [StoreController::class, "packages"])->name('packages');
+Route::get("payments", [StoreController::class, "payments"])->name('payments');

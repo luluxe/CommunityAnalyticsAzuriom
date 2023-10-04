@@ -8,7 +8,7 @@
 
 @section('content')
   <div class="card shadow">
-    <a href="https://communityanalytics.net" class="bg-white">
+    <a href="https://communityanalytics.net/l/azuriom" class="bg-white">
       <img src="{{ plugin_asset('communityanalytics', 'img/logos/main-black.svg') }}"
            class="p-4 w-96 mx-auto" alt="CommunityAnalytics logo">
     </a>
@@ -59,7 +59,7 @@
         <div class="alert alert-dismissible alert-warning mb-0">
           {{ trans('communityanalytics::main.admin.why-api-key') }}<br>
           {{ trans('communityanalytics::main.admin.go-add-store') }}
-          <a href="https://communityanalytics.net/stores/create" class="underline my-0">
+          <a href="https://communityanalytics.net/l/azuriom-store-add" class="underline my-0">
             {{ trans('communityanalytics::main.follow-link') }}
           </a>
         </div>

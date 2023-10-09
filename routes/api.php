@@ -1,6 +1,7 @@
 <?php
 
 use Azuriom\Plugin\CommunityAnalytics\Controllers\Api\StoreController;
+use Azuriom\Plugin\CommunityAnalytics\Middleware\AuthenticatePluginMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('', [StoreController::class, "info"])->name('info');
-Route::get("packages", [StoreController::class, "packages"])->name('packages');
-Route::get("payments", [StoreController::class, "payments"])->name('payments');
+Route::group(['middleware' => AuthenticatePluginMiddleware::class], function () {
+    Route::get('', [StoreController::class, "info"])->name('info');
+    Route::get("packages", [StoreController::class, "packages"])->name('packages');
+    Route::get("payments", [StoreController::class, "payments"])->name('payments');
+});

@@ -1,6 +1,6 @@
 # CommunityAnalyticsAzuriom
 
-[CommunityAnalytics Website]([https://communityanalytics.net/](https://communityanalytics.net/l/azuriom))
+[CommunityAnalytics Website](https://communityanalytics.net/l/azuriom)
 
 A marketing tool that allows servers to put data where there is none. 
 Know where these players come from and the profitability of your advertising actions.

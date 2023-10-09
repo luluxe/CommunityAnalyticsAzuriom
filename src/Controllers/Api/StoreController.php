@@ -16,7 +16,10 @@ class StoreController extends Controller
      */
     public function info(): JsonResponse
     {
-        return response()->json([]);
+        return response()->json([
+            'type' => 'azuriom',
+            'url' => route('home'),
+        ]);
     }
 
     // Packages
@@ -51,7 +54,7 @@ class StoreController extends Controller
             ->where('status', '=', 'completed');
         if ($request->date_min)
             $query = $query->where('created_at', '>=', $request->date_min);
-        $paginate_payments = $query->paginate();
+        $paginate_payments = $query->paginate(25);
 
         $payments = [];
         foreach ($paginate_payments as $payment) {

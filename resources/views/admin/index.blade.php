@@ -70,7 +70,7 @@
         <div class="form-group mx-auto">
           <label class="form-label" for="api_url">{{ trans('communityanalytics::main.admin.api-url') }}</label>
           <input type="text" class="form-control w-api-key" id="api_url" name="api_url" disabled
-                 value="{{ route('communityanalytics.api.info') }}" style="margin-right:9rem;"/>
+                 value="{{ route('home') }}" style="margin-right:9rem;"/>
         </div>
 
         <div class="form-group mx-auto">

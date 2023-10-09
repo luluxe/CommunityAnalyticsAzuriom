@@ -38,7 +38,7 @@ class ModelFormatter
 
         return [
             'id' => $payment->id,
-            'uuid' => $payment->user->game_id,
+            'identifier' => $payment->user->game_id,
             'name' => $payment->user->name,
             'amount' => $payment->price,
             'date' => $payment->created_at,

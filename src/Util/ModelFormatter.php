@@ -28,12 +28,14 @@ class ModelFormatter
     {
         $formatted_items = [];
         foreach ($payment->items as $item) {
-            $formatted_items[] = [
-                'package_id' => $item->buyable_id,
-                'package_name' => $item->name,
-                'quantity' => $item->quantity,
-                'amount' => $item->price,
-            ];
+            if ($item->buyable_type == 'shop.offers') {
+                $formatted_items[] = [
+                    'package_id' => $item->buyable_id,
+                    'package_name' => $item->name,
+                    'quantity' => $item->quantity,
+                    'amount' => $item->price,
+                ];
+            }
         }
 
         return [

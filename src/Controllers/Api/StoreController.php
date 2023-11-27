@@ -5,6 +5,7 @@ namespace Azuriom\Plugin\CommunityAnalytics\Controllers\Api;
 use Azuriom\Http\Controllers\Controller;
 use Azuriom\Plugin\CommunityAnalytics\Requests\StorePaymentRequest;
 use Azuriom\Plugin\CommunityAnalytics\Util\ModelFormatter;
+use Azuriom\Plugin\Shop\Models\Offer;
 use Azuriom\Plugin\Shop\Models\Package;
 use Azuriom\Plugin\Shop\Models\Payment;
 use Illuminate\Http\JsonResponse;
@@ -51,13 +52,17 @@ class StoreController extends Controller
     public function payments(StorePaymentRequest $request): JsonResponse
     {
         $query = Payment::query()->with('user')->with('items')
+            ->where('price', '!=', 0)
+            ->whereRelation('items', function ($query) {
+                $query->where('buyable_type', '=', 'shop.offers');
+            })
             ->where('status', '=', 'completed');
         if ($request->date_min)
             $query = $query->where('created_at', '>=', $request->date_min);
         $paginate_payments = $query->paginate(25);
 
         $payments = [];
-        foreach ($paginate_payments as $payment) {
+        foreach ($paginate_payments->items() as $payment) {
             $payments[] = ModelFormatter::formatPayment($payment);
         }
 

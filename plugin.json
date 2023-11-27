@@ -2,7 +2,7 @@
     "id": "communityanalytics",
     "name": "CommunityAnalytics",
     "description": "Plugin that link your store to Community Analytics",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "url": "https://communityanalytics.net/l/azuriom",
     "authors": [
         "FNetwork - CommunityAnalytics"
